@@ -1,21 +1,20 @@
 {
   "name": "use-input-phone-mask",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "index.js",
   "types": "index.d.ts",
   "author": "Alexsandr Serduck",
   "license": "MIT",
   "private": false,
   "keywords": [
-    "text mask",
+    "phone mask",
     "input mask",
+    "input phone mask",
     "string mask",
     "input formatting",
-    "text formatting",
+    "input phone formatting",
+    "phone formatting",
     "string formatting"
-  ],
-  "files": [
-    "dist"
   ],
   "repository": {
     "url": "https://github.com/awen2841/use-input-phone-mask"
