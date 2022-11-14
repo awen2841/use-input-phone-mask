@@ -7,8 +7,7 @@
     "lint:write": "eslint stories/ --fix",
     "storybook": "npm run build:icons && start-storybook -p 6006",
     "build-storybook": "npm run build:icons && build-storybook",
-    "build:icons": "node scripts/svgPreparation/index.js",
-    "chromatic": "npx chromatic --project-token=0ec5c5ae33ff"
+    "build:icons": "node scripts/svgPreparation/index.js"
   },
   "dependencies": {
     "react": "18.1.0",
