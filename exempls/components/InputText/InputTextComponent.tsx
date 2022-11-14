@@ -1,52 +1,54 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import { IInputTextProps, INPUT_FOCUS_TYPE, INPUT_APPEARANCE, INPUT_SIZE } from './types';
-import { getCSSClasses } from './utils';
+import { IInputTextProps } from './types';
+import { getCSSClasses } from './utils/getCSSClasses';
 
 import css from './InputText.module.scss';
 
 const cx = classNames.bind(css);
 
 const InputTextComponent: React.FC<IInputTextProps> = ({
-	size = INPUT_SIZE.SM,
-	appearance = INPUT_APPEARANCE.GRAY_SOFT,
-	focusType = INPUT_FOCUS_TYPE.DEFAULT,
 	id,
+	size = 'md',
+	appearance = 'gray_soft',
 	label,
 	subLabel,
-	error = '',
-	className = '',
+	error,
+	className,
 	componentRef,
-	containerClassName = '',
-	errorClassName = '',
-	subLabelClassName = '',
+	containerClassName,
+	errorClassName,
+	subLabelClassName,
 	renderLeading,
+	renderLeadingClassName,
 	renderTrailing,
-	renderLeadingClassName = '',
-	renderTrailingClassName = '',
+	renderTrailingClassName,
+	mask,
 	...props
-}): JSX.Element => {
+}) => {
+	const isRenderLeadingItemExist = !!renderLeading;
+	const isRenderTrailingItemExist = !!renderTrailing;
+
 	const {
-		className: _className,
-		containerClassName: _containerClassName,
-		subLabelClassName: _subLabelClassName,
-		errorClassName: _errorClassName,
-		renderLeadingClassName: _renderLeadingClassName,
-		renderTrailingClassName: _renderTrailingClassName,
-	} = getCSSClasses(
+		_className,
+		_containerClassName,
+		_subLabelClassName,
+		_errorClassName,
+		_renderLeadingClassName,
+		_renderTrailingClassName,
+	} = getCSSClasses({
 		size,
 		error,
 		className,
 		appearance,
-		focusType,
+		isRenderLeadingItemExist,
+		isRenderTrailingItemExist,
+		subLabelClassName,
 		containerClassName,
 		errorClassName,
-		subLabelClassName,
 		renderLeadingClassName,
 		renderTrailingClassName,
-		renderLeading,
-		renderTrailing
-	);
+	});
 
 	return (
 		<div className={_className}>
@@ -58,10 +60,11 @@ const InputTextComponent: React.FC<IInputTextProps> = ({
 			)}
 			<div className={_containerClassName}>
 				{renderLeading && <div className={_renderLeadingClassName}>{React.cloneElement(renderLeading)}</div>}
+				{mask && <span className={css.mask_container}>{mask}</span>}
 				<input id={id} className={cx(css.input, className)} ref={componentRef} {...props} />
 				{renderTrailing && React.cloneElement(renderTrailing, { className: _renderTrailingClassName })}
 			</div>
-			{!!error && <p className={_errorClassName}>{error}</p>}
+			{error && <p className={_errorClassName}>{error}</p>}
 		</div>
 	);
 };

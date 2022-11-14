@@ -7,48 +7,30 @@
 $sizes: (
   'sm': (
     "min-height": 40px,
-
-    "border-radius": 4px,
-
     "padding": 0 12px,
     "padding-left-with-leading": 40px,
     "padding-left-with-trailing": 46px,
-
-    "margin-left-leading": 11px,
-    "margin-right-leading": 10px,
-
-    "margin-left-trailing": 0px,
-    "margin-right-trailing": 1px,
+    "border-radius": 4px,
+    "leading-right-margin": 0px,
+    "trailing-right-margin": 0px,
   ),
   'md': (
     "min-height": 48px,
-
-    "border-radius": 4px,
-
     "padding": 0 16px,
-    "padding-left-with-leading": 44px,
+    "padding-left-with-leading": 42px,
     "padding-left-with-trailing": 50px,
-
-    "margin-left-leading": 15px,
-    "margin-right-leading": 10px,
-
-    "margin-left-trailing": 2px,
-    "margin-right-trailing": 5px,
+    "border-radius": 4px,
+    "leading-right-margin": 4px,
+    "trailing-right-margin": 4px,
   ),
   'lg': (
     "min-height": 64px,
-
-    "border-radius": 4px,
-
     "padding": 0 24px,
-    "padding-left-with-leading": 52px,
+    "padding-left-with-leading": 50px,
     "padding-left-with-trailing": 58px,
-
-    "margin-left-leading": 23px,
-    "margin-right-leading": 10px,
-
-    "margin-left-trailing": 0px,
-    "margin-right-trailing": 13px,
+    "border-radius": 4px,
+    "leading-right-margin": 12px,
+    "trailing-right-margin": 12px,
   ),
 );
 
@@ -56,117 +38,24 @@ $appearances: (
   gray_soft: (
     "text-color-static": $gray-dark,
     "text-color-disabled": $gray-soft,
-
     "placeholder-color-static": $gray,
     "placeholder-color-disabled": $gray,
-
     "border-color-static": $gray-soft,
     "border-color-hover": $blue-hover,
     "border-color-focus": $blue-active,
     "border-color-disabled": $gray-soft,
-
     "outline-color-focus": rgba($blue-static, 0.3),
-
     "background-color-disabled": rgba($gray-light, 0.3),
   ),
   /* Error styles */
   red: (
     "text-color-static": $gray-dark,
-
-    "placeholder-color-static": $gray,
-    "placeholder-color-disabled": $gray,
-
     "border-color-static": $red-static,
     "border-color-hover": $red-hover,
     "border-color-focus": $red-active,
-
     "outline-color-focus": rgba($red-active, 0.3),
   ),
 );
-
-.wrapper {
-  z-index: 1;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-
-  label {
-    display: flex;
-    flex-direction: column;
-    color: $black;
-    margin-bottom: 12px;
-    font: $font16;
-    font-weight: 500;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  input {
-    width: 100%;
-    font: $font16;
-    border-width: 1px;
-    border-style: solid;
-    border-color: transparent;
-    min-height: inherit;
-    line-height: normal;
-    box-sizing: border-box;
-    text-overflow: ellipsis;
-    background-color: transparent;
-    transition: color $transition,
-                box-shadow $transition,
-                border-color $transition,
-                background-color $transition;
-  }
-
-  @each $key, $value in $sizes {
-    &_size_#{$key} {
-      min-height: get-in($sizes, $key, "min-height");
-
-      input {
-        padding: get-in($sizes, $key, "padding");
-        border-radius: get-in($sizes, $key, "border-radius");
-      }
-
-      &_with_render_leading input {
-        padding-left: get-in($sizes, $key, "padding-left-with-leading");
-      }
-
-      &_with_render_trailing input {
-        padding-right: get-in($sizes, $key, "padding-left-with-trailing");
-      }
-    }
-  }
-
-  @each $key, $value in $appearances {
-    &_appearance_#{''+$key+''} {
-      input {
-        color: get-in($appearances, $key, "text-color-static");
-        border-color: get-in($appearances, $key, "border-color-static");
-
-        @include placeholder {
-          color: get-in($appearances, $key, "placeholder-color-static");
-        }
-
-        &:disabled {
-          @include placeholder {
-            color: get-in($appearances, $key, "placeholder-color-disabled");
-          }
-        }
-
-        &:hover:not(:focus):not(:read-only):not(:disabled) {
-          border-color: get-in($appearances, $key, "border-color-hover");
-        }
-
-        &:disabled {
-          border-color: get-in($appearances, $key, "border-color-disabled");
-          background-color: get-in($appearances, $key, "background-color-disabled");
-        }
-      }
-    }
-  }
-}
 
 .input {
   margin: 0;
@@ -208,45 +97,93 @@ $appearances: (
   }
 }
 
-.focus_default.wrapper {
+.wrapper {
+  z-index: 1; /* with this box-shadow will be higher than other elements */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    display: flex;
+    flex-direction: column;
+    color: $black;
+    margin-bottom: 12px;
+    font: $input-label-font;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  input {
+    width: 100%;
+    font: $font16;
+    border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    min-height: inherit;
+    line-height: normal;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    background-color: transparent;
+    transition: color $transition,
+    box-shadow $transition,
+    border-color $transition,
+    background-color $transition;
+  }
+
+  /* @Sizes */
+  @each $key, $value in $sizes {
+    &_size_#{$key} {
+      min-height: get-in($sizes, $key, "min-height");
+
+      .mask_container {
+        padding: get-in($sizes, $key, "padding");
+      }
+
+      input {
+        padding: get-in($sizes, $key, "padding");
+        border-radius: get-in($sizes, $key, "border-radius");
+      }
+
+      &_with_render_leading input, &_with_render_leading .mask_container {
+        padding-left: get-in($sizes, $key, "padding-left-with-leading");
+      }
+
+      &_with_render_trailing input, &_with_render_trailing .mask_container {
+        padding-right: get-in($sizes, $key, "padding-left-with-trailing");
+      }
+    }
+  }
+
+  /* Appearance */
   @each $key, $value in $appearances {
     &_appearance_#{''+$key+''} {
       input {
+        color: get-in($appearances, $key, "text-color-static");
+        border-color: get-in($appearances, $key, "border-color-static");
+
+        @include placeholder {
+          color: get-in($appearances, $key, "placeholder-color-static");
+        }
+
+        &:hover:not(:focus):not(:read-only):not(:disabled) {
+          border-color: get-in($appearances, $key, "border-color-hover");
+        }
+
         &:focus:not(:read-only) {
           border-color: get-in($appearances, $key, "border-color-focus");
           box-shadow: 0 0 0 3px get-in($appearances, $key, "outline-color-focus");
         }
-      }
-    }
-  }
-}
 
-.focus_with_border.wrapper {
-  @each $key, $value in $appearances {
-    &_appearance_#{''+$key+''} {
-      input {
-        &:focus:not(:read-only) {
-          border-color: get-in($appearances, $key, "border-color-focus");
+        &:disabled {
+          border-color: get-in($appearances, $key, "border-color-disabled");
+          background-color: get-in($appearances, $key, "background-color-disabled");
+
+          @include placeholder {
+            color: get-in($appearances, $key, "placeholder-color-disabled");
+          }
         }
-      }
-    }
-  }
-}
-
-.focus_animation.wrapper {
-  @each $key, $value in $appearances {
-    &_appearance_#{''+$key+''} {
-      input {
-        &:focus:not(:read-only) {
-          animation: animation_border_#{''+$key+''} 2s infinite;
-          border-color: get-in($appearances, $key, "border-color-focus");
-        }
-      }
-    }
-
-    @keyframes animation_border_#{''+$key+''} {
-      50% {
-        box-shadow: 0 0 0 3px get-in($appearances, $key, "outline-color-focus");
       }
     }
   }
@@ -258,20 +195,20 @@ $appearances: (
 }
 
 .leading {
-  position: absolute;
   top: 50%;
   left: 0;
-  transform: translateY(-50%);
-
+  position: absolute;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   pointer-events: none;
   justify-content: center;
+  transform: translateY(-50%);
 
   @each $key, $value in $sizes {
     &_size_#{$key} {
-      margin-left: get-in($sizes, $key, "margin-left-leading");
-      margin-right: get-in($sizes, $key, "margin-right-leading");
+      margin-left: get-in($sizes, $key, "trailing-right-margin");
     }
   }
 }
@@ -279,15 +216,26 @@ $appearances: (
 .trailing {
   top: 50%;
   right: 0;
-  position: absolute!important;
+  position: absolute;
   transform: translateY(-50%);
 
   @each $key, $value in $sizes {
     &_size_#{$key} {
-      margin-left: get-in($sizes, $key, "margin-left-trailing") !important;
-      margin-right: get-in($sizes, $key, "margin-right-trailing") !important;
+      margin-right: get-in($sizes, $key, "trailing-right-margin");
     }
   }
+}
+
+.mask_container {
+  font: $font16;
+  color: rgba($gray, .5);
+  position: absolute;
+  top: 1px;
+  bottom: 0;
+  left: 1px;
+  z-index: -1;
+  display: flex;
+  align-items: center;
 }
 
 .error {
@@ -301,4 +249,3 @@ $appearances: (
   font: $font14;
   margin-top: 4px;
 }
-
