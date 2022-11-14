@@ -1,11 +1,8 @@
 body {
   margin: 0;
-  text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  -webkit-overflow-scrolling: touch;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -17,24 +14,10 @@ p {
 }
 
 :global {
-  .sb-show-main.sb-main-centered{
-    display: block!important;
-  }
-
   #root {
-    width: 100%;
-    min-height: 100%;
-    display: flex;
-  }
-
-  .root_modal {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: fixed;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 1rem;
+    max-height: 100%;
   }
 }
