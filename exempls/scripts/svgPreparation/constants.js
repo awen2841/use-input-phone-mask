@@ -1,5 +1,5 @@
-const SRC = 'stories';
-const ICONS_ABSOLUTE_FOLDER = `icons`;
+const SRC = 'components';
+const ICONS_ABSOLUTE_FOLDER = `${SRC}/icons`;
 const ICONS_RELATIVE_FOLDER = 'icons';
 
 const OUTPUT_ICONS_FOLDER = `${SRC}/Icon`;

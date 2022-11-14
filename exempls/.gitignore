@@ -7,5 +7,5 @@ npm-debug.log
 yarn-error.log
 .jest-cache
 /yarn.lock
-/stories/Icon/glyphs.ts
-/stories/Icon/icons.ts
+/components/Icon/glyphs.ts
+/components/Icon/icons.ts
