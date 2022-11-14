@@ -40,9 +40,9 @@ export default () => {
 To see an example of the code running, follow these steps:
 
 1. Clone the repo, `git clone https://github.com/awen2841/use-input-phone-mask.git`
-1. `cd use-input-phone-mask/exempls`
+1. `cd use-input-phone-mask/exemple`
 1. `npm install`
 1. `npm run storybook`
 1. Open [http://localhost:6006](http://localhost:6006)
 
-The code of the example is in [`example`](https://6372bcd0ee690db14a761db2-minotwwsmw.chromatic.com/?path=/story/input--input-phone-mask).
+The code of the example is in [`exemple`](https://6372bcd0ee690db14a761db2-minotwwsmw.chromatic.com/?path=/story/input--input-phone-mask).
