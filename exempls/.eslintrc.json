@@ -28,6 +28,7 @@
     {
       "files": ["*.ts", "*.tsx"],
       "rules": {
+        "jsx-a11y/label-has-for": 0,
         "react/jsx-no-undef": 0,
         "no-return-await": 0,
         "no-duplicate-imports": 1,

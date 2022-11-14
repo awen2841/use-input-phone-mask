@@ -1,8 +1,8 @@
 import React from 'react';
 import { IPropsInputComponent } from './types';
 
-import css from './Input.module.scss';
+import { InputText } from '../../components/InputText';
 
-const InputComponent: React.FC<IPropsInputComponent> = () => <div className={css.wrapper}>Input</div>;
+const InputComponent: React.FC<IPropsInputComponent> = () => <InputText />;
 
 export default InputComponent;
