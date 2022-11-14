@@ -9,3 +9,4 @@ yarn-error.log
 /yarn.lock
 /components/Icon/glyphs.ts
 /components/Icon/icons.ts
+/build-storybook.log
