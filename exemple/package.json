@@ -5,7 +5,7 @@
   "scripts": {
     "lint": "eslint stories/",
     "lint:write": "eslint stories/ --fix",
-    "storybook": "npm run build:icons && start-storybook -p 6006",
+    "storybook": "npm run build:icons && start-storybook -p 6001",
     "build-storybook": "npm run build:icons && build-storybook",
     "build:icons": "node scripts/svgPreparation/index.js",
     "publish:chromatic": "npx chromatic --project-token"

@@ -1,6 +1,6 @@
 {
   "name": "use-input-phone-mask",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "index.js",
   "types": "index.d.ts",
   "author": "Alexsandr Serduck",
@@ -16,7 +16,7 @@
     "phone formatting",
     "string formatting"
   ],
-  "homepage": "https://6372bcd0ee690db14a761db2-minotwwsmw.chromatic.com/?path=/story/input--input-phone-mask",
+  "homepage": "https://6372bcd0ee690db14a761db2-ycvwbtcbzk.chromatic.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/awen2841/use-input-phone-mask"
@@ -69,6 +69,6 @@
   },
   "dependencies": {
     "lodash": "4.17.21",
-    "use-input-text-mask": "0.0.7"
+    "use-input-text-mask": "0.0.9"
   }
 }

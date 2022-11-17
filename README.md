@@ -43,6 +43,6 @@ To see an example of the code running, follow these steps:
 1. `cd use-input-phone-mask/exemple`
 1. `npm install`
 1. `npm run storybook`
-1. Open [http://localhost:6006](http://localhost:6006)
+1. Open [http://localhost:6001](http://localhost:6001)
 
-The code of the example is in [`exemple`](https://6372bcd0ee690db14a761db2-minotwwsmw.chromatic.com/?path=/story/input--input-phone-mask).
+The code of the example is in [`exemple`](https://6372bcd0ee690db14a761db2-ycvwbtcbzk.chromatic.com/).
